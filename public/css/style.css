@@ -1,0 +1,27 @@
+﻿#results .col {
+	border: 1px solid black;
+}
+
+.text-left {
+	background-color: #bfbbbb;
+}
+
+#results .col.text-center {
+	font-weight:600;
+	background-color: #eae5e5;
+}
+
+.consultor {
+	background-color: #bbb;
+	font-weight: bold;
+}
+
+.my-1 {
+	width: 70%;
+}
+
+.col.text-center:hover {
+	cursor: pointer;
+}
+
+/*Website made by: metalkaiserpolanco@gmail.com*/
