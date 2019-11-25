@@ -1,4 +1,28 @@
-﻿#results .col {
+﻿/*Website made by: metalkaiserpolanco@gmail.com*/
+.col-11 {
+	background-color: #f8f9fc;
+}
+.top-row {
+	/*background-color: #007bff;*/
+	padding: 10px 0 10px 0;
+	margin-bottom: 5px;
+}
+
+select {
+	overflow-x:auto;
+	overflow-y:auto;
+	text-align: center;
+}
+
+#list1 {
+	width: 60%;
+}
+
+.card, .card-body {
+	padding: 0 0 0 0;
+}
+
+#results .col {
 	border: 1px solid black;
 }
 
@@ -12,16 +36,71 @@
 }
 
 .consultor {
-	background-color: #bbb;
+	background-color: #007bff;
 	font-weight: bold;
+	color: white;
 }
 
 .my-1 {
-	width: 70%;
+	width: 40%;
 }
 
-.col.text-center:hover {
+li {
+	color: white;
+	opacity: 0.9;
+	font-size: .65rem;
+}
+
+li.text-center:hover {
 	cursor: pointer;
+	opacity: 1;
 }
 
+#results .col.text-center {
+	padding: 0 0 0 0;
+}
+
+@media only screen and (max-width: 1120px) {
+	button img {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1000px) {
+	button img {
+		display: block;
+	}
+	.my-1.btn.btn-primary {
+		font-size: .5rem;
+	}
+
+	li p {
+		display: none;
+	}
+	ul p.dropdown-divider {
+		margin: 20px 0 20px 0;
+	}
+
+	.col-1.bg-primary.py-4 {
+		padding: 0 3px 0 3px;
+	}
+	#list1 {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 550px) {
+	button span {
+		display: none;
+	}
+	button {
+		margin: 0 0 0 0;
+	}
+	#results .col.text-right {
+		font-size: .75rem;
+	}
+	span.mx-3 {
+		display: none;
+	}
+}
 /*Website made by: metalkaiserpolanco@gmail.com*/

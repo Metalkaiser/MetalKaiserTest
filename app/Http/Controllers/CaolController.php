@@ -69,14 +69,21 @@ class CaolController extends Controller
     public function grafico(Request $request)
     {
         if ($request->ajax()) {
-            //Lavachart graph
-            $lava = new Lavacharts;
             $names = $request["nameArr"];
             $months = $request["test"];
             $totalgrafico = $request["totalgrafico"];
             $customedio = (float)$request["customedio"];
-            $testvar = $this->columns($months, count($names), $customedio);
+            $result_array = array();
+            foreach ($totalgrafico as $key => $value) {
+                $result_array[$key] = array();
+                foreach ($value as $key1 => $value1) {
+                    $result_array[$key][$key1] = (float)$value1;
+                }
+            }
+            //Lavachart graph
+            $lava = new Lavacharts;
             $grafico = $lava->DataTable();
+
             $grafico->addDateColumn('Periodo');
             for ($y=0; $y < count($names); $y++) { 
                 $grafico->addNumberColumn($names[$y]);
@@ -84,7 +91,11 @@ class CaolController extends Controller
             $grafico->addNumberColumn('Custo medio');
             for ($x=0; $x < count($names); $x++) { 
                 for ($c=0; $c < count($months); $c++) {
-                    $grafico->addRow([$months[$c], $testvar]);
+
+                    $arrRow = array_column($result_array, $c);
+                    $monthsconsult[$c] = array_merge([$months[$c]],$arrRow,[$customedio]);
+
+                    $grafico->addRow($monthsconsult[$c]);
                 }
             }
             $lava->ComboChart('Grafico',$grafico, [
@@ -107,7 +118,7 @@ class CaolController extends Controller
         }
     }
 
-    /**
+    /** 
      * Display the specified resource.
      *
      * @param  \App\caol  $caol
@@ -132,15 +143,5 @@ class CaolController extends Controller
                 $lava->render('PieChart','Pizza','results')
             );
         }
-    }
-
-    public function columns($months, $column, $customedio)
-    {
-        $rowString = "";
-        for ($i=0; $i < $column; $i++) { 
-            $rowString = $rowString . "(float)consultor[" . $i . "]["."\$c], ";
-        }
-        $rowString = $rowString . $customedio;
-        return $rowString;
     }
 }

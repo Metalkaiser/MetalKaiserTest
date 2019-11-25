@@ -6,26 +6,13 @@
 	});
 	//alert("Website made by: metalkaiserpolanco@gmail.com");
 	//Select Consultores
-	$(".btn-pass").click(function(){
-		var direction = $(this).text();
-		var list1 = $("#list1")[0].selectedOptions;
-		var list2 = $("#list2")[0].selectedOptions;
-		var option = "";
-
-		if (direction == ">>" && list1.length != 0) {
-			for (var i = list1.length - 1; i >= 0; i--) {
-				option = list1[i].outerHTML;
-				$("option[value='" + list1[i].value + "']").remove();
-				$("#list2").append(option);
-			}
-		}else {
-			if (direction == "<<" && list2.length != 0) {
-				for (var i = list2.length - 1; i >= 0; i--) {
-					option = list2[i].outerHTML;
-					$("option[value='" + list2[i].value + "']").remove();
-					$("#list1").append(option);
-				}
-			}
+	$("#list1").change(function(){
+		var list = $("#list1")[0].selectedOptions;
+		var listl = list.length;
+		var opts = "";
+		for (var v = 0; v < listl; v++) {
+			opts = opts + "<option value='" + list[v].value + "'>" + list[v].innerHTML + "</option>";
+			$("#list2").html(opts);
 		}
 	});
 	//Select Consultores
@@ -107,7 +94,7 @@
 					}
 					$("#results").html("");
 					switch (button) {
-						case '<img class="mr-1" src="http://127.0.0.1:8000/inc/039-file-text2.png">Relatorio': 	//Relatorio
+						case '<img class="mr-1" src="http://127.0.0.1:8000/inc/039-file-text2.png"><span>Relatorio</span>': 	//Relatorio
 							//Comienza case "Relatorio"
 							for (var t = 0; t < data.length; t++) {
 								$("#results").append(
@@ -139,7 +126,7 @@
 							}
 						break;
 						//Termina case "Relatorio"
-						case '<img class="mr-1" src="http://127.0.0.1:8000/inc/156-stats-dots.png">Gráfico': 	//Gráfico
+						case '<img class="mr-1" src="http://127.0.0.1:8000/inc/156-stats-dots.png"><span>Gráfico</span>': 	//Gráfico
 							//Comienza case "Gráfico"
 							$("#results").html("");
 							var totalgrafico = new Array();
@@ -182,7 +169,7 @@
 							});
 						break;
 						//Termina case "Gráfico"
-						case '<img class="mr-1" src="http://127.0.0.1:8000/inc/155-pie-chart.png">Pizza': 		//Pizza
+						case '<img class="mr-1" src="http://127.0.0.1:8000/inc/155-pie-chart.png"><span>Pizza</span>': 		//Pizza
 							//Comienza case "Pizza"
 							$("#results").html("");
 							var pizzaArr = new Array();
